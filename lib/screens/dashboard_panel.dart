@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_charts/flutter_charts.dart' as charts;
+import 'package:greenhouse_user_page/widgets/plant_preview.dart';
 
 
-import 'data/plant.dart';
-import 'data/sample_data.dart' as sample_data;
+import '../data/plant.dart';
+import '../data/sample_data.dart' as sample_data;
 
 class DashboardPanel extends StatelessWidget {
   /// The home page of the app.
@@ -44,50 +44,7 @@ class DashboardPanel extends StatelessWidget {
                 itemCount: sample_data.plants.length,
                 itemBuilder: (context, index) {
                   final plant = sample_data.plants[index];
-                  return Card(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => PlantDetails(plant: plant),
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              plant.image,
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            ),
-                            const SizedBox(width: 16.0),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    plant.name,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  Text(
-                                    plant.description,
-                                    style: const TextStyle(fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
+                  return PlantPreview(plant: plant);
                 },
               ),
             ),
@@ -97,6 +54,8 @@ class DashboardPanel extends StatelessWidget {
     );
   }
 }
+
+
 
 class PlantDetails extends StatelessWidget {
   /// Displays details about a plant.
@@ -110,39 +69,42 @@ class PlantDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.network(
-            plant.image,
-            fit: BoxFit.cover,
+      child: InkWell(
+        onTap: () {
+          // Handle plant details tap
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                plant.name,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8.0),
+              Image.asset(
+                plant.image,
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                plant.description,
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                'Last Watered: ${plant.lastWatered.toString()}',
+                style: const TextStyle(fontSize: 14),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  plant.name,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  plant.description,
-                  style: const TextStyle(fontSize: 16),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Last Watered: ${plant.lastWatered.toString()}',
-                  style: const TextStyle(fontSize: 14),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

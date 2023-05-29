@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:greenhouse_user_page/dashboard_panel.dart';
+import 'package:greenhouse_user_page/screens/dashboard_panel.dart';
 
 void main() {
   runApp(const GreenhouseApp());
