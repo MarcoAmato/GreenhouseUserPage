@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../screens/dashboard_panel.dart';
 import '../data/plant.dart';
+import '../screens/plant_details_page.dart';
 
 class PlantPreview extends StatelessWidget {
   const PlantPreview({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:greenhouse_user_page/screens/dashboard_panel.dart';
+import 'package:greenhouse_user_page/screens/dashboard_page.dart';
 
 void main() {
   runApp(const GreenhouseApp());
@@ -16,7 +16,7 @@ class GreenhouseApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const DashboardPanel(),
+      home: const DashboardPage(),
     );
   }
 }
